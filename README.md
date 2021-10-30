@@ -1,6 +1,13 @@
-#Team 24 Solution for JPM8
 
-##def takeInput(filename):
+
+
+
+#	Team 24 Solution for JPM8
+
+
+
+
+##	def takeInput(filename):
 Takes filename as an input and returns all teams as an object
 Also calculates the number of jobs.
 
@@ -22,18 +29,18 @@ def takeInput(filename):
 
 
 
-##def calculateDisappointment(teams):
+##	def calculateDisappointment(teams):
 Calcualtes total dissapointment of all teams.
 
 ```python
 def calculateDisappointment(teams):
     return sum([team.getCurrentWeight() for team in teams])```
 ```
-##Class team 
+##	Class team 
 Holds basic operations on the teams 
 like setting preferences , returning preferences , getDissapointment
 
-#Main
+#	Main
 Main keeps most of the operation.
 First calculates how many teams each job will allocate.
 Creates empty places for teams
