@@ -1,0 +1,8 @@
+Team 1, apples, oranges, pears
+Team 2, apples, pears, oranges
+Team 3, apples, oranges, grapes
+Team 4, oranges, apples, grapes
+Team 5, oranges, apples, pears
+Team 6, apples, grapes, oranges
+Team 7, oranges, grapes, apples
+Team 8, oranges, apples, grapes
