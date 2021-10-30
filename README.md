@@ -67,7 +67,7 @@ Fills the empty jobs in this order.
 Then checks for unallocated teams. If team x is unallocated looks for it's preferences,
 Finds other teams with same preferences and moves them to other jobs if there are free jobs for them.
 Fills the jobs with unallocated teams.
-![alt text](https://github.com/CivanDogan/disappointmentMinimiser/img.png?raw=true)
+![alt text](https://github.com/CivanDogan/disappointmentMinimiser/blob/master/img.png)
 
 ```python
     for team in [team for team in teams if not team.hasJob()]:
