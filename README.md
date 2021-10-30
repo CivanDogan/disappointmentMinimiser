@@ -1,11 +1,10 @@
-# This is a sample Python script.
+#Team 24 Solution for JPM8
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-import math
-from pprint import pprint
+##def takeInput(filename):
+Takes filename as an input and returns all teams as an object
+Also calculates the number of jobs.
 
-
+```python
 def takeInput(filename):
     teams = []
     opt = set()
@@ -17,79 +16,59 @@ def takeInput(filename):
             opt = opt.union(set(l[1:]))
 
     return teams, opt
+```
+
+## Usage
 
 
+
+##def calculateDisappointment(teams):
+Calcualtes total dissapointment of all teams.
+
+```python
 def calculateDisappointment(teams):
-    return sum([team.getCurrentWeight() for team in teams])
+    return sum([team.getCurrentWeight() for team in teams])```
+```
+##Class team 
+Holds basic operations on the teams 
+like setting preferences , returning preferences , getDissapointment
+
+#Main
+Main keeps most of the operation.
+First calculates how many teams each job will allocate.
+Creates empty places for teams
+
+Creates a single dimensional ordered list of teams prefereces
+
+1st of team 1 , 1st of team 2 ... last of last team
+
+Fills the empty jobs in this order.
 
 
-class Team():
-    job = None
-    preferences = []
-
-    def __init__(self, name):
-        self.name = name
-        self.job = None
-
-    def __init__(self, name, pref):
-        self.name = name
-        self.preferences = pref
-        self.job = None
-
-    def __str__(self):
-        return self.name
-
-    def __repr__(self):
-        return self.__str__()
-
-    def setPreferences(self, pref):
-        self.preferences = pref
-
-    def getPreferences(self):
-        return self.preferences
-
-    def hasJob(self, ):
-        if self.job == None:
-            return False
-        return True
-
-    def getJob(self):
-        return self.job
-
-    def setJob(self, job):
-        self.job = job
-
-    def getWeight(self, pref):
-        if pref in self.preferences:
-            return self.preferences.index(pref)
-        else:
-            return 100
-
-    def getCurrentWeight(self):
-        return self.getWeight(self.job)
-
-    def getPref(self, index):
-        return self.preferences[index]
-
-
-if __name__ == '__main__':
+```python
     teams, opts = takeInput("input.txt")
     team_per_options = math.ceil(len(teams) / len(opts))
     jobs = {option: [None] * team_per_options for option in opts}
+    print(sorted(jobs))
 
     flat_list = []  # List of (team,choice,weight)
     for weight in range(len(opts) - 1):
         for team in teams:
             flat_list.append((team, team.getPref(weight)))
 
-    print("Flat list :" ,flat_list)
+    print(flat_list)
     # letting each team get their best choice if empty
     for team, t_pref in flat_list:
         if (None in jobs[t_pref]) and not team.hasJob():
             index = jobs[t_pref].index(None)
             jobs[t_pref][index] = (team)
             team.setJob(t_pref)
+```
+Then checks for unallocated teams. If team x is unallocated looks for it's preferences,
+Finds other teams with same preferences and moves them to other jobs if there are free jobs for them.
+Fills the jobs with unallocated teams.
 
+```python
     for team in [team for team in teams if not team.hasJob()]:
         # iterates over teams that has no job
         for pref_i in team.getPreferences():
@@ -100,14 +79,13 @@ if __name__ == '__main__':
                     for preference in target_team.getPreferences():
                         # looks other teams preferences has empty space so it can move them there.
                         if None in jobs[preference]:
-                            print(jobs)
                             jobs[preference][jobs[preference].index(None)] = (target_team)
                             jobs[pref_i][target_team_index] = team
                             target_team.setJob(preference)
                             team.setJob(pref_i)
+                            print(jobs)
 
-    print(jobs)
-    for team in teams:
-        print(f"{team.name} gets {team.getJob()} with dissapointment of {team.getCurrentWeight()}")
+```
+At the end prints the results with total dissapointment.
 
-    print(f"Total dissapointment is {calculateDisappointment(teams)}")
+Thank you
