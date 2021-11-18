@@ -4,7 +4,7 @@
 
 #	Team 24 Solution for JPM8
 
-
+This is for University of Glasgow Code Olympics and made in 2 hours.
 
 
 ##	def takeInput(filename):
